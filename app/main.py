@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Vocab API"
+    return "Vocab API test"
 
 @app.route('/content/<string:file_name>', methods=['GET'])
 def File_Content(file_name):
