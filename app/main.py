@@ -24,4 +24,4 @@ def File_Content(file_name):
     elif file_name.endswith(('.jpg', '.png')):
         file_str = pytesseract.image_to_string(file_name)
 
-    return file_str
+    return jsonify(file_str)
