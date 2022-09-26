@@ -10,18 +10,6 @@ app = Flask(__name__)
 def index():
     return "Vocab API test"
 
-@app.route('/content/<string:file_name>', methods=['GET'])
+@app.route('/<string:file_name>', methods=['GET'])
 def File_Content(file_name):
-    file_str = ''
-
-    if file_name.endswith('.pdf'):
-        pdf_file = convert_from_path(file_name)
-
-        for i in range(len(pdf_file)):
-            pdf_file[i].save(f'page{str(i + 1)}.jpg', 'JPEG')
-            file = f'page{str(i + 1)}.jpg'
-            file_str += pytesseract.image_to_string(file)
-    elif file_name.endswith(('.jpg', '.png')):
-        file_str = pytesseract.image_to_string(file_name)
-
-    return jsonify(file_str)
+    return jsonify({'File Content': pytesseract.image_to_string(file_name)})
